@@ -12,6 +12,8 @@ const Routess: React.FC = () => {
       <Route path="/" element={<Home />} />
       <Route path="/tarefas" element={<Task />} />
       <Route path="/tarefas_cadastro" element={<TaskForm />} />
+      <Route path="/tarefas_cadastro/:id" element={<TaskForm />} />
+
     </Routes>
   );
 }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ChangeEvent, useState } from 'react';
 import Table from 'react-bootstrap/esm/Table';
 import { Link } from 'react-router-dom';
 import dados from '../../../data/dados'
@@ -7,24 +7,36 @@ import Form from 'react-bootstrap/Form';
 
 
 
-function getLinhas() {
-  return dados.map(dados => {
-    return (
-      <tr>
-        <td>{dados.id}</td>
-        <td>{dados.titulo}</td>
-        <td>{dados.descricao}</td>
-        <td>
-          <Button size='sm'>Editar</Button>{' '}
-          <Button size='sm' variant="info">Visualizar</Button>{' '}
-          <Button size='sm' variant="danger">Remover</Button>{' '}
-        </td>
-      </tr>
-    )
-  })
+interface ITask {
+  titulo: string;
+  descricao: string;
+  conteudo: string;
 }
 
 const Task: React.FC = () => {
+
+
+  const [model, setModel] = useState<ITask>({
+    titulo: '',
+    descricao: '',
+    conteudo: ''
+  })
+
+
+  function updatedModel(e: ChangeEvent<HTMLInputElement>) {
+
+    setModel({
+      ...model,
+      [e.target.name]: e.target.value
+    })
+  }
+
+  function onSubmit (e: ChangeEvent<HTMLFormElement>){
+    e.preventDefault()
+
+    console.log(model)
+  }
+
   return (
     <div className='container'>
       <br />
@@ -36,18 +48,33 @@ const Task: React.FC = () => {
       </div>
       <br />
       <div className='container'>
-        <Form>
+        <Form onSubmit={onSubmit}>
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label>Título</Form.Label>
-            <Form.Control type="text" placeholder="Digite o título..." />
+            <Form.Control
+              type="text"
+              name='titulo'
+              onChange={(e: ChangeEvent<HTMLInputElement>) => updatedModel(e)}
+              placeholder="Digite o título..."
+            />
           </Form.Group>
           <Form.Group className="mb-3" controlId="formBasicPassword">
             <Form.Label>Descrição</Form.Label>
-            <Form.Control type="text" placeholder="Digite a descrição..." />
+            <Form.Control
+              type="text"
+              name='descricao'
+              onChange={(e: ChangeEvent<HTMLInputElement>) => updatedModel(e)}
+              placeholder="Digite a descrição..."
+            />
           </Form.Group>
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label>Conteúdo</Form.Label>
-            <Form.Control as="textarea" rows={3} />
+            <Form.Control
+              as="textarea"
+              rows={3}
+              name='conteudo'
+              onChange={(e: ChangeEvent<HTMLInputElement>) => updatedModel(e)}
+            />
           </Form.Group>
           <Button variant="primary" type="submit">
             Salvar
