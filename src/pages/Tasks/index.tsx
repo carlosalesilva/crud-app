@@ -2,6 +2,8 @@ import React from 'react';
 import { Button } from 'react-bootstrap';
 import Table from 'react-bootstrap/esm/Table';
 import dados from '../../data/dados'
+import './index.css';
+import { Link } from 'react-router-dom';
 
 
 
@@ -22,11 +24,18 @@ function getLinhas() {
   })
 }
 
+
 const Task: React.FC = () => {
+  
   return (
     <div className='container'>
       <br />
-      <h1>Task page</h1>
+      <div className='task-header'>
+      <h1>Notas</h1>
+      <Link to='/tarefas_cadastro'>
+      <Button variant='dark' size="sm">Nova Nota +</Button>
+      </Link>
+      </div>
       <br />
       <Table striped bordered hover className='text-center'>
         <thead>
