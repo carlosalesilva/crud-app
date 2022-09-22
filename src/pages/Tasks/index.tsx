@@ -3,30 +3,8 @@ import { Button } from 'react-bootstrap';
 import Table from 'react-bootstrap/esm/Table';
 import dados from '../../data/dados'
 import './index.css';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
-
-
-function getLinhas() {
-  return dados.map(dados => {
-    return (
-      <tr>
-        <td>{dados.id}</td>
-        <td>{dados.titulo}</td>
-        <td>{dados.descricao}</td>
-        <td>
-          <Button size='sm' onClick={() => edit(dados.id)}>Editar</Button>{' '}
-          <Button size='sm' variant="info">Visualizar</Button>{' '}
-          <Button size='sm' variant="danger">Remover</Button>{' '}
-        </td>
-      </tr>
-    )
-  })
-}
-
-function edit(id: number) {
-  <Link to='/tarefas_cadastro/${id}'></Link>
-}
 
 
 const Task: React.FC = () => {

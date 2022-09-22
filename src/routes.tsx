@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import CadastroUsers from './pages/CadastroUsers';
 
 import Home from './pages/Home';
 import Task from './pages/Tasks';
@@ -13,7 +14,7 @@ const Routess: React.FC = () => {
       <Route path="/tarefas" element={<Task />} />
       <Route path="/tarefas_cadastro" element={<TaskForm />} />
       <Route path="/tarefas_cadastro/:id" element={<TaskForm />} />
-
+      <Route path="/cadastro_users" element={<CadastroUsers />} />
     </Routes>
   );
 }

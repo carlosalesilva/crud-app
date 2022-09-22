@@ -1,7 +1,21 @@
 import axios from "axios";
 
-const api = axios.create({
-  baseURL: ""
-})
+export function LoginUser(login_data: any){
+    return(
+        axios({
+            method:"POST",
+            url:"https://test-flimed-backend.herokuapp.com/users/auth",
+            data: login_data,
+        })
+    );
+}
 
-export default api;
+export function CadastroUser(usuario: any){
+    return(
+        axios({
+            method: "POST",
+            url: "https://test-flimed-backend.herokuapp.com/users/create",
+            data: usuario,
+        })
+    );
+}

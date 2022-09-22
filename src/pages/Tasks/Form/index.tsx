@@ -1,6 +1,6 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 import Table from 'react-bootstrap/esm/Table';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import dados from '../../../data/dados'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
@@ -15,6 +15,7 @@ interface ITask {
 
 const Task: React.FC = () => {
 
+  const { id } = useParams();
 
   const [model, setModel] = useState<ITask>({
     titulo: '',
@@ -22,6 +23,9 @@ const Task: React.FC = () => {
     conteudo: ''
   })
 
+  useEffect(() => {
+      console.log(id)
+  }, [id])
 
   function updatedModel(e: ChangeEvent<HTMLInputElement>) {
 
